@@ -1,0 +1,34 @@
+<% require 'time' %>
+
+<h1>Edit Ph Reading from <%=@ph.created_at.strftime("%b %e, %l:%M %p")%></h1>
+
+  <% if @ph %>
+    <ul>
+      <% @ph.errors.each do |column, error| %>
+        <li><%= column %> <%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class = "form">
+
+    <form action="/index/edit/<%=@ph.id %>" method="POST">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+      <div>
+        <h4>
+          <label for="reading">Edit Reading</label>
+        </h4>
+        <input type="text" id = "reading" name="reading" value="<%= @ph.reading %>" />
+      </div>
+      <div>
+        <h4>
+          <label for="mood">Edit Mood</label>
+        </h4>
+        <input type="text" id = "mood" name="mood" value="<%= @ph.mood %>" />
+      </div>
+      <div class="update">
+        <input type="submit" value="Update" />
+      </div>
+    </form>
+  </div>
+</div>
