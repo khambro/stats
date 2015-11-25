@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   post "/index", to: "phs#create"
   get "/new", to: "phs#new"
   get "/stats", to: "phs#index"
-
   delete "/index/:id", to: "phs#delete"
   get "/index/edit/:id", to: "phs#edit", as: :edit
   post "/index/edit/:id", to: "phs#update"

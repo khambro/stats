@@ -19,11 +19,6 @@ class PhsController < ApplicationController
   end
 
 
-  def show
-    @stats= Ph.all
-  end
-
-
   def edit
     @ph = Ph.find(params[:id])
   end

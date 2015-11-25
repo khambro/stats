@@ -1,46 +1,13 @@
-<% require 'time' %>
 
-<div class = "header">
-
-<h1>STATS</h1></div
-
-
-<% if @ph %>
-  <% @ph.errors.each do |c, msg| %>
-  <li><%= c %><%= msg %></li>
-  <%end%>
-<%end%>
-
-<div = "form1">
+<div class="header">
+  <h1>Phun With Ph Levels!</h1>
+</div>
 
 
-  <%= form_tag "/index" do %>
 
-  <div>
-  <h4><label for= "reading">Ph Reading</label></h4>
-    <input type="text-field" id="reading"  name="ph[reading]"/>
-  </div>
-
-  <div>
-    <h4><label for= "mood">Mood</label></h4>
-      <input type="text-field" id="mood"  name="ph[mood]"/>
-  </div>
-
-  <div>
-    <h4>Hangry?
-      <input type="radio" id="hangry_true"  name="ph[hangry]" value="true"/>Yes
-      <input type="radio" id="hangry_false"  name="ph[hangry]" value="false"/>No
-      </h4>
-  </div>
-
-
-    <%= submit_tag %>
-  <% end %>
-  </div>
-<h3>Saliva Ph Stats:</h3>
 
 <table class="table">
-
+<tr><td colspan="7" class="title">Karen's Ph Stats:</td></tr>
   <tr>
     <th>Date/Time</th>
     <th>Ph Reading</th>
@@ -49,8 +16,12 @@
   </tr>
     <% @stats.each do |n| %>
       <tr>
-        <td> <%= n.created_at.strftime("%b %e, %l:%M %p") %> </td>
-        <td> <%= n.reading %> </td>
+        <td> <%= n.created_at.localtime.strftime("%b %e, %l:%M %p") %> </td>
+        <td> <% if n.reading >= 7.3 %>
+               <font color="green"><b><%= n.reading%></font></b>
+              <% else %>
+               <font color="red"><b><%= n.reading%></font></b>
+              <% end %></td>
         <td> <%= n.mood %> </td>
         <td> <%= n.hangry %> </td>
           <div class="buttons">
@@ -60,14 +31,14 @@
               <form action="/index/edit/<%= n.id %>" method="POST">
                 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                 <input type="hidden" name="_method" value="GET" />
-                <input class="button" type="submit" value="Edit Stat" />
+                <input class="button" type="submit" value="Edit" />
               </form>
             </li></td>
             <td><li>
               <form action="/index/<%= n.id %>" method="POST">
                 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
                 <input type="hidden" name="_method" value="DELETE" />
-                <input class="button" type="submit" value="Delete Stat" data-confirm="Delete the data?"/>
+                <input class="button" type="submit" value="Delete" data-confirm="Delete the data?"/>
               </form>
             </li></td>
 
@@ -76,3 +47,41 @@
       </tr>
     <% end %>
 </table>
+
+
+
+<% if @ph %>
+  <% @ph.errors.each do |c, msg| %>
+  <li><%= c %><%= msg %></li>
+  <%end%>
+<%end%>
+
+
+
+    <%=form_tag "/index", class: "input" do %>
+      <div>
+        <h4><label for= "reading">Ph Reading</label></h4>
+
+
+          <input type="text-field" id="reading"  name="ph[reading]"/>
+      </div>
+      <div>
+        <h4><label for= "mood">Mood</label></h4>
+        <input type="text-field" id="mood"  name="ph[mood]"/>
+      </div>
+      <div>
+        <h4>Hangry?
+          <input type="radio" id="hangry_true"  name="ph[hangry]" value="true"/>Yes
+          <input type="radio" id="hangry_false"  name="ph[hangry]" value="false"/>No
+        </h4>
+      </div>
+      <%= submit_tag "Enter Data" %>
+    <% end %>
+
+    <div class="inspiration">
+      <h3>You're on your way to feeling great!</h3>
+    </div>
+
+
+
+<%=image_tag "PH-Level.jpg", class:"image"%>
