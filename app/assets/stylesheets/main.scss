@@ -1,10 +1,10 @@
 body {
-  background-image: url("/assets/paisley.png");
-
+    background-color: rgba(244, 233, 234, 0.6);
 }
 
 .header {
-  height: 70px;
+  display: inline-block;
+  height: 100px;
   width: 100%;
   background-color: #bd1550;
   color: black;
@@ -16,18 +16,57 @@ body {
   padding: 10px;
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  font-size: 32px;
 }
+
+.header2 {
+  display: inline-block;
+  height: 80px;
+  width: 100%;
+  background-color: rgba(244, 233, 234, 0.6);
+
+}
+
+.header2 h2 {
+  text-align: center;
+}
+
+
+
+.upper .toggle{
+  margin: 100px;
+  background-color:#bd1550;
+	-moz-border-radius:33px;
+	-webkit-border-radius:33px;
+	border-radius:33px;
+	border:12px solid #2d3133;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e02fd4;
+}
+
+.upper .toggle:hover {
+	background-color:#20d3eb;
+
+}
+
+.toggle:active {
+position:relative;
+top:1px;
+}
+
 
 .input  {
   display: inline-block;
-  float:right;
-  margin: 15px 40px 0 0;
+  float: right;
   padding: 0 0 15px 0;
   font-family: 'Roboto', sans-serif;
   height: auto;
-  width: 240px;
-  border: 3px dashed #bd1550;
+
   text-align: center;
 
 }
@@ -43,12 +82,11 @@ body {
 }
 
 .inspiration h3 {
-    font-family: cursive;
+
 }
 
 
-.table .title {
-  font-size: 30px;
+.table .title h3 {
   text-align: left;
 }
 
@@ -68,24 +106,16 @@ body {
 
 .table {
   display: inline-block;
+  float: left;
   color: #bd1550;
   height: auto;
   list-style: none;
 }
 
-h3 {
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-}
-
-.button {
-  background-color: black;
-  color: #bd1550;
-}
 
 .image {
   display: inline-block;
   padding: 50px;
-  float: right;
+  
 
 }

@@ -1,7 +1,8 @@
 class PhsController < ApplicationController
 
   def index
-    @stats= Ph.all
+    @stats= Ph.all.sort_by {|x| x.created_at}
+    @stats=@stats.reverse
   end
 
   def create
@@ -10,7 +11,7 @@ class PhsController < ApplicationController
       redirect_to "/"
     else
       @stats= Ph.all
-      puts @ph.errors
+      @ph.errors
       render :index
     end
   end

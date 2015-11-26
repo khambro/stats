@@ -1,13 +1,26 @@
 
 <div class="header">
-  <h1>Phun With Ph Levels!</h1>
+  <h1>Follow Your Ph Levels To Good Health!</h1>
+</div>
+
+<div class="header2">
+  <h2>Ph levels make a big difference in our bodies. Up with alkaline, down with acid!</h2>
 </div>
 
 
+<% if @ph %>
+  <% @ph.errors.each do |c, msg| %>
+  <li><%= c %><%= msg %></li>
+  <%end%>
+<%end%>
 
 
-<table class="table">
-<tr><td colspan="7" class="title">Karen's Ph Stats:</td></tr>
+
+
+
+
+<table class="table six columns">
+<tr><td colspan="7" class="title"><h3>Karen's Ph Stats:</h3></td></tr>
   <tr>
     <th>Date/Time</th>
     <th>Ph Reading</th>
@@ -23,7 +36,11 @@
                <font color="red"><b><%= n.reading%></font></b>
               <% end %></td>
         <td> <%= n.mood %> </td>
-        <td> <%= n.hangry %> </td>
+        <td> <% if n.hangry == true %>
+                  Yes
+              <% else %>
+                  No
+              <% end %></td>
           <div class="buttons">
             <td>
 
@@ -49,39 +66,36 @@
 </table>
 
 
-
-<% if @ph %>
-  <% @ph.errors.each do |c, msg| %>
-  <li><%= c %><%= msg %></li>
-  <%end%>
-<%end%>
-
-
-
-    <%=form_tag "/index", class: "input" do %>
-      <div>
-        <h4><label for= "reading">Ph Reading</label></h4>
-
-
-          <input type="text-field" id="reading"  name="ph[reading]"/>
+  <div class="upper five columns">
+    <h3 class="hvr-pulse toggle">Enter Your Stats!</h3>
+      <div class="show" style="display:none">
+        <%=form_tag "/index", class: "input five columns" do %>
+          <div>
+            <h4><%=label_tag "ph Reading"%></h4>
+              <%=text_field_tag "ph[reading]", nil, placeholder: "Ph Reading", class: "text-field" %>
+          </div>
+          <div>
+            <h4><%=label_tag :mood%></h4>
+            <%=text_field_tag "ph[mood]", nil, placeholder: "Current Mood", class: "text-field" %>
+          </div>
+          <div>
+            <h4>Hangry?
+              <%= radio_button_tag "ph[hangry]", true %>Yes
+              <%= radio_button_tag "ph[hangry]", false %>No
+            </h4>
+          </div>
+          <%= submit_tag "Enter Data" %>
+        <% end %>
       </div>
-      <div>
-        <h4><label for= "mood">Mood</label></h4>
-        <input type="text-field" id="mood"  name="ph[mood]"/>
-      </div>
-      <div>
-        <h4>Hangry?
-          <input type="radio" id="hangry_true"  name="ph[hangry]" value="true"/>Yes
-          <input type="radio" id="hangry_false"  name="ph[hangry]" value="false"/>No
-        </h4>
-      </div>
-      <%= submit_tag "Enter Data" %>
-    <% end %>
+  </div>
 
-    <div class="inspiration">
+
+
+
+    <div class="inspiration four columns">
       <h3>You're on your way to feeling great!</h3>
     </div>
 
 
 
-<%=image_tag "PH-Level.jpg", class:"image"%>
+<%=image_tag "PH-Level.jpg", class:"image"%> 
